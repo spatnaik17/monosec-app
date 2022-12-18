@@ -23,6 +23,7 @@ class Users(db.Model, UserMixin):
     comments = db.relationship('Comments', backref='author', lazy=True, cascade='delete')
     creation_date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     
+    """__repr__ returns <type 'Users'>"""
     def __repr__(self):
         return Users(' {self.email} ', '{self.active}','{self.active}', '{self.admin}')  
     
@@ -49,6 +50,7 @@ class Posts(db.Model,UserMixin):
     status = db.Column(db.Integer, default=1)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     
+    """__repr__ returns <type 'Posts'>"""
     def __repr__(self):
         return Posts('{self.title}', '{self.content}', '{self.date}', '{self.status}')
 
@@ -61,5 +63,6 @@ class Comments(db.Model, UserMixin):
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)   
     
+    """__repr__ returns <type 'Comments'>"""
     def __repr__(self):
         return Comments('{self.title}' '{self.text}', '{self.date}') 

@@ -24,7 +24,7 @@ class Config:
     SESSION_COOKIE_SAMESITE = 'Strict'
     SESSION_PERMANENT = True
     SESSION_MODIFIED  = True
-    PERMANENT_SESSION_LIFETIME = timedelta(minutes=1)
+    PERMANENT_SESSION_LIFETIME = timedelta(minutes=5)
     SECURITY_CSRF_COOKIE = {"samesite": "Strict", "httponly": False, "secure": False} # set secure to true in prod for https-only
     SECURITY_CSRF_COOKIE_NAME = "XSRF-TOKEN"
     SECURITY_CSRF_HEADER = "X-XSRF-TOKEN"

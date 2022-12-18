@@ -115,10 +115,10 @@ def update_post(post_id):
                     post.status = 1
                 else:
                     post.status = 0
-                    db.session.commit()
-                    flash('Post has been updated', 'success')
-                    current_app.logger.info("Post has been updated'- " + str(post_id))
-                    return redirect(url_for('posts.portal'))
+                db.session.commit()
+                flash('Post has been updated', 'success')
+                current_app.logger.info("Post has been updated'- " + str(post_id))
+                return redirect(url_for('posts.portal'))
         elif request.method == 'GET':
             current_app.logger.info("Getting details of post - " + str(post_id))
             update_post_form.title.data = post.title

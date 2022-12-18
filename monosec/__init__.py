@@ -1,3 +1,4 @@
+"""Module for initialization of the monosec web application."""
 from flask import Flask
 from flask_login import login_user, login_required, logout_user, current_user
 from flask_sqlalchemy import SQLAlchemy
@@ -32,7 +33,7 @@ login_required.login_view = 'users.login'
 login_required.login_message_category = 'info'
 csrf = CSRFProtect()
 
-
+"""Init function to create the application"""
 def create_app(config_class=Config):
     app = Flask(__name__,template_folder='templates')
     app.config.from_object(Config)
@@ -44,7 +45,6 @@ def create_app(config_class=Config):
     from monosec.error_handler.handlers import errors
 
     db.init_app(app)
-    #mail.init_app(app)
     authorize.init_app(app)
     bcrypt.init_app(app)
     login_manager.init_app(app)
@@ -62,6 +62,4 @@ def create_app(config_class=Config):
         db.create_all()
 
     app.logger.info("Database creation done.")
-    return app
-
-    
+    return app    

@@ -70,17 +70,17 @@ def validate_password_registration(password):
     if(regex.search(str(password)) != None):
         raise ValidationError("""Password contains invalid characters. 
             Special characters allowed are - '@ " $ & _ - '""")
-        stats = PasswordStats(password)
-        policy_check = password_policy.test(str(password))
-        if stats.strength() < 0.66:
-            raise ValidationError("""Password strength is too low. 
-            Please consider using combination of upper case, lower case and special chars. 
-            Avoid character repetetion""")
+    stats = PasswordStats(password)
+    policy_check = password_policy.test(str(password))
+    if stats.strength() < 0.66:
+        raise ValidationError("""Password strength is too low. 
+        Please consider using combination of upper case, lower case and special chars. 
+        Avoid character repetetion""")
 '''
 Method to validate the input string for presence of invalid characters or strings
 '''    
 def validate_input(input):
     input = input.lower()
-    for str in invalid_input_strings:
-        if input.find(str) != -1:
+    for istr in invalid_input_strings:
+        if input.find(istr) != -1:
             raise ValidationError("Invalid strings found in input.")

@@ -37,23 +37,19 @@ def register():
             current_app.logger.info("Register Begin")
             password_input = (registration_form.password.data).strip() # get the password and remove spaces     
             hashed_password = bcrypt.generate_password_hash(password_input).decode('utf-8')
-            current_app.logger.info("Register 1")
             email_input = (registration_form.email.data).strip() # get the email and remove spaces
             name_input = (registration_form.username.data).strip() # get the name and remove spaces
-            current_app.logger.info("Register 2")
             new_user = Users(name=name_input, email=email_input,password=hashed_password)
             current_app.logger.info("Registered new user - " + registration_form.email.data)
-            current_app.logger.info("Register 3")
             db.session.add(new_user)
             db.session.commit()
-            current_app.logger.info("Register 4")
             send_registration_auth(new_user)         
             current_app.logger.info("Registered User - " + new_user.email + ' :' + str(datetime.now(timezone.utc))) 
                 
             # email auth token to user
             return redirect(url_for('creds.auth'))
         else:
-            current_app.logger.error(registration_form.error)
+            current_app.logger.error(registration_form.errors)
             current_app.logger.error("Error in register form validation")   
         
     return render_template('register.html', form = registration_form)

@@ -31,7 +31,7 @@ def auth():
             else:
                 current_app.logger.error("Token validation failed. Routing to re-auth")
                 flash("Invalid auth token. Please request a new auth token with registered email", 'error')
-                return redirect(url_for('auth.reset_request')) 
+                return redirect(url_for('creds.reset_request')) 
     return render_template('auth.html', form=auth_form)
 
     
