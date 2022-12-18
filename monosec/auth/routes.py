@@ -46,7 +46,7 @@ def reset_request():
         # logout user
         logout_user()
         current_app.logger.info("Logged out user" + current_user.id)
-        #return redirect(url_for('main.home'))
+        
     reset_password_form = PasswordReset()
     user_found = Users.query.filter_by(email=reset_password_form.email.data).first()
         

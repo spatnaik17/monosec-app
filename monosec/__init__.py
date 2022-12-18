@@ -5,7 +5,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_authorize import Authorize
-#from flask_mail import Mail
 from flask_wtf.csrf import CSRFProtect
 from monosec.config import Config
 from flask_session import Session
@@ -20,12 +19,7 @@ format='%(asctime)s %(levelname)s %(message)s',
       filename='monosec.log',
       filemode='w')
 
-# logging.getLogger("requests").setLevel(logging.WARNING)
-# logging.basicConfig(filename='monosec.log') # replace with env var
-# logging.basicConfig(level=logging.INFO)
-
 authorize = Authorize()
-#mail = Mail()
 bcrypt = Bcrypt()
 db = SQLAlchemy()
 login_manager = LoginManager()

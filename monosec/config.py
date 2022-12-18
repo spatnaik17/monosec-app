@@ -5,11 +5,11 @@ from datetime import timedelta
 class Config:
     # set info into environment variables
     SECRET_KEY = os.environ.get('SECRET_KEY') 
-    if not SECRET_KEY:
-        SECRET_KEY = secrets.token_hex(16)
-    #SQLALCHEMY_DATABASE_URI = 'sqlite:///monosec.db'
-    
+      
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URI')
+    
+    
+    # if database path for postgres is not defined in environment, use local sqlite
     if not SQLALCHEMY_DATABASE_URI:
         SQLALCHEMY_DATABASE_URI = 'sqlite:///monosec.db'
 
